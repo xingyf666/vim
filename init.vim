@@ -1048,6 +1048,7 @@ nnoremap <silent> , :<C-u>WhichKey ','<CR>
 
 call plug#begin()
 
+Plug 'jingmiao/auto-pairs'
 "Plug 'vim-scripts/surround.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
