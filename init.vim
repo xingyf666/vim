@@ -1048,7 +1048,7 @@ nnoremap <silent> , :<C-u>WhichKey ','<CR>
 
 call plug#begin()
 
-Plug 'jingmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 "Plug 'vim-scripts/surround.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
@@ -1088,7 +1088,7 @@ Plug 'skywind3000/asyncrun.vim'
 "Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'voldikss/vim-floaterm'
 "Plug 'findango/vim-mdx', {'for': 'mdx'}
-Plug 'Yggdroot/LeaderF' ", { 'do': ':LeaderfInstallCExtension' }
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 "Plug 'voldikss/LeaderF-floaterm'
 Plug 'liuchengxu/vista.vim', {'on': 'Vista!!'}
 Plug 'morhetz/gruvbox'
@@ -1133,11 +1133,17 @@ inoremap <C-BS> <C-o>db
 inoremap <C-CR> <C-o>o
 inoremap <S-CR> <C-o>O
 
+" C-z undo
+inoremap <C-c> <Esc>"+y<Esc>pa
+inoremap <C-v> <Esc>"+pa
+inoremap <C-z> <Esc>u
+inoremap <C-r> <Esc><C-r>
+
 if has('win32') || has('win64')
-    set shell=powershell
-    set shellcmdflag=-command
-    set shellquote="\"
-    set shellxquote=
+    "set shell=powershell
+    "set shellcmdflag=-command
+    "set shellquote="\"
+    "set shellxquote=
 endif
 
 colorscheme gruvbox
