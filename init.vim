@@ -1048,6 +1048,11 @@ nnoremap <silent> , :<C-u>WhichKey ','<CR>
 
 call plug#begin()
 
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/seoul256.vim'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
 Plug 'jiangmiao/auto-pairs'
 "Plug 'vim-scripts/surround.vim'
 Plug 'tpope/vim-surround'
@@ -1134,8 +1139,8 @@ inoremap <C-CR> <C-o>o
 inoremap <S-CR> <C-o>O
 
 " C-z undo
-inoremap <C-c> <Esc>"+y<Esc>pa
-inoremap <C-v> <Esc>"+pa
+inoremap <C-c> <Esc>"+y<Esc>pbea
+inoremap <C-v> <Esc>"+pbea
 inoremap <C-z> <Esc>u
 inoremap <C-r> <Esc><C-r>
 
@@ -1144,6 +1149,10 @@ if has('win32') || has('win64')
     "set shellcmdflag=-command
     "set shellquote="\"
     "set shellxquote=
+
+    set undodir=$HOME/AppData/Local/Temp
+    set backupdir=$HOME/AppData/Local/Temp
+    set directory=$HOME/AppData/Local/Temp
 endif
 
 colorscheme gruvbox
