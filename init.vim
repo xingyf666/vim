@@ -344,7 +344,7 @@ if has('nvim')
     imap <F19> <ESC><F19>
     tmap <F19> <ESC><F19>
 else
-    nnoremap <S-F7> :AsyncTask project-config<CR>
+    nnoremap <S-F7> :AsyncTask project-clean<CR>
     vmap <S-F7> <ESC><S-F7>
     imap <S-F7> <ESC><S-F7>
     tmap <S-F7> <ESC><S-F7>
@@ -738,11 +738,11 @@ endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+"inoremap <silent><expr> <TAB>
+      "\ coc#pum#visible() ? coc#pum#next(1) :
+      "\ <SID>check_back_space() ? "\<TAB>" :
+      "\ coc#refresh()
+"inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -760,7 +760,8 @@ endif
 " format on enter, <cr> could be remapped by other vim plugin
 " inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm()
                               "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? (<SID>check_back_space() ? "\<CR>" : coc#pum#confirm()) : "\<CR>"
+inoremap <silent><expr> <TAB> coc#pum#visible() ? (<SID>check_back_space() ? "\<TAB>" : coc#pum#confirm()) : "\<TAB>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? (<SID>check_back_space() ? "\<CR>" : coc#pum#confirm()) : "\<CR>" 
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -775,8 +776,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gY <Plug>(coc-declaration)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use gi to show documentation in preview window.
+nnoremap <silent> gi :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim', 'help'], &filetype) >= 0)
@@ -899,7 +900,7 @@ let g:floaterm_height = 6
 "let g:floaterm_keymap_new    = '<F1>'
 "let g:floaterm_keymap_prev   = '<F2>'
 "let g:floaterm_keymap_next   = '<F3>'
-let g:floaterm_keymap_toggle = '<C-t>'
+"let g:floaterm_keymap_toggle = '<C-t>'
 "let g:floaterm_autoclose     = 1
 "let g:floaterm_autoinsert    = 1
 let g:floaterm_rootmarks = ['.tasks', '.git/']
@@ -1048,6 +1049,7 @@ nnoremap <silent> , :<C-u>WhichKey ','<CR>
 
 call plug#begin()
 
+Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
@@ -1119,7 +1121,7 @@ set lines=30
 set columns=120
 set guioptions-=T
 set backspace=indent,eol,start
-set guifont=Consolas:h12
+set guifont=DejaVuSansM\ Nerd\ Font\ Mono:h12
 set clipboard=unnamedplus
 
 nnoremap y "+y
@@ -1132,17 +1134,55 @@ nnoremap J 5j
 vnoremap J 5j
 nnoremap K 5k
 vnoremap K 5k
+nnoremap U <C-r>
+vnoremap U <C-r>
+nnoremap gs :%s//
+nnoremap zh <C-w>h
+nnoremap zj <C-w>j
+nnoremap zk <C-w>k
+nnoremap zl <C-w>l
+nnoremap zH <C-w>H
+nnoremap zJ <C-w>J
+nnoremap zK <C-w>K
+nnoremap zL <C-w>L
+nnoremap zv <C-w>v
+nnoremap zs <C-w>s
+nnoremap z= <C-w>=
+nnoremap z- <C-w>-
+nnoremap z+ <C-w>+
+nnoremap zx <C-w>x
+nnoremap zo :only<CR>
+nnoremap zq <C-w>q
 
 " C-o go back to normal mode and do a command
 inoremap <C-BS> <C-o>db
 inoremap <C-CR> <C-o>o
-inoremap <S-CR> <C-o>O
+"inoremap <S-CR> <C-o>O
 
 " C-z undo
-inoremap <C-c> <Esc>"+y<Esc>pbea
-inoremap <C-v> <Esc>"+pbea
-inoremap <C-z> <Esc>u
-inoremap <C-r> <Esc><C-r>
+inoremap <C-a> <Esc>ggVG
+inoremap <C-c> <Esc>"+yya
+inoremap <C-v> <Esc>lPa
+inoremap <C-x> <Esc>ddi
+inoremap <C-z> <Esc>ui
+inoremap <C-r> <Esc><C-r>i
+inoremap <C-s> <Esc>:w<CR>
+vnoremap <C-c> "+y
+vnoremap <C-v> "_dP
+vnoremap <C-x> d
+nnoremap <C-a> ggVG
+nnoremap <C-z> u
+
+" powershell
+function! OpenPowershell()
+    execute 'term powershell'
+    call feedkeys("\<C-w>J")
+endfunction
+
+nnoremap <C-t> :call OpenPowershell()<CR>
+
+" auto chage working directory
+autocmd BufEnter * silent! lcd %:p:h
 
 if has('win32') || has('win64')
     "set shell=powershell
