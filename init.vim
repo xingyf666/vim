@@ -1158,6 +1158,8 @@ nnoremap zq <C-w>q
 inoremap <C-BS> <C-o>db
 inoremap <C-CR> <C-o>o
 "inoremap <S-CR> <C-o>O
+inoremap JK <Esc>
+inoremap KJ <Esc>
 
 " C-z undo
 inoremap <C-a> <Esc>ggVG
