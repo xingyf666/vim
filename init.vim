@@ -1152,7 +1152,7 @@ nnoremap z- <C-w>-
 nnoremap z+ <C-w>+
 nnoremap zx <C-w>x
 nnoremap zo :only<CR>
-nnoremap zq <C-w>q
+nnoremap zq :bd!<CR>
 
 " C-o go back to normal mode and do a command
 inoremap <C-BS> <C-o>db
