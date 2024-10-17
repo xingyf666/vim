@@ -325,7 +325,7 @@ if has('nvim')
     imap <F17> <ESC><F17>
     tmap <F17> <ESC><F17>
 else
-    nnoremap <S-F5> :AsyncStop<CR>
+    nnoremap <S-F5> :AsyncStop!<CR>
     vmap <S-F5> <ESC><S-F5>
     imap <S-F5> <ESC><S-F5>
     tmap <S-F5> <ESC><S-F5>
@@ -1178,7 +1178,7 @@ nnoremap <C-z> u
 " powershell
 function! OpenPowershell()
     execute 'term powershell'
-    call feedkeys("\<C-w>J")
+    call feedkeys("\<C-w>L")
 endfunction
 
 nnoremap <C-t> :call OpenPowershell()<CR>

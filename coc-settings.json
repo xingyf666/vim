@@ -3,8 +3,16 @@
     "languageserver": {
         "clangd": {
             "command": "clangd",
-            "rootPatterns": ["compile_flags.txt", "comiple_commands.json"],
-            "filetypes": ["c", "cc", "cpp", "c++"]
+            "rootPatterns": [
+                "compile_flags.txt",
+                "comiple_commands.json"
+            ],
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++"
+            ]
         }
     }
 }
