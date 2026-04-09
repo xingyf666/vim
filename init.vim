@@ -1335,7 +1335,12 @@ let g:which_key_map_overview.g.i = ['<Nop>', "gi \u67e5\u770b\u6587\u6863"]
 let g:which_key_map_overview.g.q = ['<Nop>', "gq \u683c\u5f0f\u5316"]
 let g:which_key_map_overview.g.a = ['<Nop>', "ga \u4ee3\u7801\u52a8\u4f5c"]
 let g:which_key_map_overview.g.c = ['<Nop>', "gac \u5f53\u524d\u7f13\u51b2\u533a\u4ee3\u7801\u52a8\u4f5c"]
-let g:which_key_map_overview.g.l = ['<Nop>', "gl* \u8bca\u65ad\u4e0e\u5217\u8868\u547d\u4ee4"]
+let g:which_key_map_overview.g.f = ['<Nop>', "gaq \u81ea\u52a8\u4fee\u590d\u5f53\u524d\u884c\u9519\u8bef"]
+let g:which_key_map_overview.g.l = ['<Nop>', "gl[ \u4e0a\u4e00\u4e2a\u8bca\u65ad"]
+let g:which_key_map_overview.g.L = ['<Nop>', "gl] \u4e0b\u4e00\u4e2a\u8bca\u65ad"]
+let g:which_key_map_overview.g.s = ['<Nop>', ":CocDiagnostics \u663e\u793a\u6240\u6709\u8bca\u65ad"]
+let g:which_key_map_overview.g.o = ['<Nop>', ":Format \u683c\u5f0f\u5316\u5f53\u524d\u6587\u4ef6"]
+let g:which_key_map_overview.g.O = ['<Nop>', ":OrgImport \u6574\u7406import"]
 
 let g:which_key_map_overview.e = {}
 let g:which_key_map_overview.e.name = "\u002b\u7f16\u8f91"
