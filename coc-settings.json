@@ -26,7 +26,7 @@
             "initializationOptions": {
                 "clangdFileStatus": true
             }
-        }
+        },
     },
     "clangd.path": "clangd",
     "clangd.arguments": [
@@ -43,6 +43,12 @@
         "-Wall",
         "-Wextra"
     ],
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.analysis.indexing": true,
+    "python.analysis.completion.addBrackets": true,
+    "python.formatting.provider": "black",
     "diagnostic.enable": true,
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": false,

@@ -1,0 +1,84 @@
+{
+  "adapters": {
+    "vscode-cpptools": {
+      "name": "cpptools",
+      "command": [
+        "cpptools"
+      ],
+      "attach": {
+        "pidProperty": "processId",
+        "pidSelect": "ask"
+      }
+    }
+  },
+  "configurations": {
+    "C++: Launch (Windows - CMake)": {
+      "adapter": "vscode-cpptools",
+      "variables": {
+        "buildTarget": "main",
+        "buildType": "Release",
+        "buildDir": "build"
+      },
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/${buildDir}/${buildType}/${buildTarget}.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceRoot}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "miDebuggerPath": "gdb.exe",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ],
+        "logging": {
+          "engineLogging": false
+        }
+      }
+    },
+    "C++: Launch (Windows - CMake Debug)": {
+      "adapter": "vscode-cpptools",
+      "variables": {
+        "buildTarget": "main",
+        "buildType": "Debug",
+        "buildDir": "build"
+      },
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/${buildDir}/${buildType}/${buildTarget}.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceRoot}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "miDebuggerPath": "gdb.exe",
+        "setupCommands": [
+          {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ],
+        "logging": {
+          "engineLogging": false
+        }
+      }
+    },
+    "C++: Attach to Process (Windows)": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "request": "attach",
+        "processId": "${command:pickMyProcess}",
+        "program": "",
+        "MIMode": "gdb",
+        "miDebuggerPath": "gdb.exe"
+      }
+    }
+  }
+}

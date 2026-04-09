@@ -435,14 +435,20 @@ function! s:uni_wq() abort
     let l:wi = getwininfo(l:nr)[0]
     let l:ty = &buftype
     if l:ty == 'popup'
-        FloatermKill
+        silent! FloatermKill
     elseif l:ty == 'quickfix'
         q " cclose
     elseif l:wi.terminal == 1
         if exists('b:floaterm_cmd')
-            FloatermKill
+            silent! FloatermKill
         else
-            q!
+            " For regular terminal, let user exit normally
+            " Send Ctrl-C to interrupt running program first
+            if exists('*term_sendkeys')
+                call term_sendkeys(bufnr('%'), "\<C-c>")
+            endif
+            sleep 100m
+            silent! q
         endif
     else
         wa!
@@ -508,40 +514,48 @@ augroup end
 "exec "au FileType cpp iabbr gnv namespace zenovis {"
 "augroup end
 
-" no longer used vimspector:
-"nmap <S-F3> <Plug>VimspectorStop
-"nmap <S-F4> <Plug>VimspectorRestart
-"nmap <S-F5> <Plug>VimspectorContinue
-"nmap <S-F6> <Plug>VimspectorPause
-"nmap <S-F8> <Plug>VimspectorRunToCursor
-"nmap <C-S-F8> <Plug>VimspectorAddFunctionBreakpoint
-"nmap <S-F9> <Plug>VimspectorToggleBreakpoint
-"nmap <C-S-F9> <Plug>VimspectorToggleConditionalBreakpoint
-"nmap <S-F10> <Plug>VimspectorStepOver
-"nmap <S-F11> <Plug>VimspectorStepInfo
-"nmap <S-F12> <Plug>VimspectorStepOut
-"nmap <LEADER>= <Plug>VimspectorBalloonEval
-"xmap <LEADER>= <Plug>VimspectorBalloonEval
-"let g:ycm_semantic_triggers = {'VimspectorPrompt': ['.', '->', ':', '<']}
-"let g:cmake_vimspector_support = 1
-"let g:cmake_vimspector_default_configuration = {
-"\ 'adapter': 'vscode-cpptools',
-"\ 'configuration': {
-   "\ 'type': '',
-   "\ 'request': 'launch',
-   "\ 'cwd': '${workspaceRoot}',
-   "\ 'Mimode': '',
-   "\ 'args': [],
-   "\ 'program': '',
-   "\ "setupCommands": [
-   "\ {
-   "\ "description": "Enable pretty-printing for gdb",
-   "\ "text": "-enable-pretty-printing",
-   "\ "ignoreFailures": 'true',
-   "\ }
-   "\ ],
-   "\ }
-"\ }
+" vimspector debugger (removed):
+" function! s:SetupVimspectorConfig() abort
+"     let l:root = s:GetTaskRoot()
+"     let l:config_path = l:root . '/.vimspector.json'
+"     let l:template_path = expand('~/.vim/.vimspector.json.template')
+"
+"     if !filereadable(l:config_path) && filereadable(l:template_path)
+"         let l:template = readfile(l:template_path)
+"         call writefile(l:template, l:config_path)
+"         echohl MoreMsg
+"         echom 'Created .vimspector.json from template in project root'
+"         echom 'Two configurations available:'
+"         echom '  - C++: Launch (Windows - CMake)     (Release mode)'
+"         echom '  - C++: Launch (Windows - CMake Debug) (Debug mode)'
+"         echom 'Press F9 to select and start debugging'
+"         echohl None
+"     endif
+" endfunction
+"
+" function! s:VimspectorContinueWithSetup() abort
+"     call s:SetupVimspectorConfig()
+"     call feedkeys("\<Plug>VimspectorContinue", 'n')
+" endfunction
+"
+" function! s:VimspectorToggleBreakpointWithSetup() abort
+"     call s:SetupVimspectorConfig()
+"     call feedkeys("\<Plug>VimspectorToggleBreakpoint", 'n')
+" endfunction
+"
+" nmap <silent> <S-F3> <Plug>VimspectorStop
+" nmap <silent> <S-F4> <Plug>VimspectorRestart
+" nmap <silent> <F9> :call <SID>VimspectorContinueWithSetup()<CR>
+" nmap <silent> <F10> <Plug>VimspectorStepOver
+" nmap <silent> <F8> <Plug>VimspectorRunToCursor
+" nmap <silent> <S-F8> <Plug>VimspectorAddFunctionBreakpoint
+" nmap <silent> <F12> :call <SID>VimspectorToggleBreakpointWithSetup()<CR>
+" nmap <silent> <S-F9> <Plug>VimspectorToggleConditionalBreakpoint
+" nmap <silent> <F11> <Plug>VimspectorStepInto
+" nmap <silent> <S-F11> <Plug>VimspectorStepInfo
+" nmap <silent> <S-F10> <Plug>VimspectorStepOut
+" nmap <silent> <LEADER>= <Plug>VimspectorBalloonEval
+" xmap <silent> <LEADER>= <Plug>VimspectorBalloonEval
 
 " don't extend the stupid comments:
 autocmd FileType * setlocal formatoptions-=cro
@@ -734,7 +748,7 @@ nmap T <Plug>(easymotion-overwin-w)
 let g:EasyMotion_do_mapping = 0
 
 " for coc.nvim:
-let g:coc_global_extensions = ['coc-clangd', 'coc-json', 'coc-git']
+let g:coc_global_extensions = ['coc-clangd', 'coc-pyright', 'coc-json', 'coc-git']
 
 " BEGIN_COC_NVIM {{{
 " References: https://github.com/neoclide/coc.nvim#example-vim-configuration
