@@ -1,3 +1,81 @@
 {
-    "suggest.noselect": true
+    "suggest.noselect": true,
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "args": [
+                "--background-index",
+                "--clang-tidy",
+                "--header-insertion=iwyu",
+                "--completion-style=detailed",
+                "--function-arg-placeholders",
+                "--fallback-style=llvm"
+            ],
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                "compile_commands.json",
+                "compile_flags.txt",
+                ".clangd",
+                ".git/"
+            ],
+            "initializationOptions": {
+                "clangdFileStatus": true
+            }
+        }
+    },
+    "clangd.path": "clangd",
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+        "--completion-style=detailed",
+        "--function-arg-placeholders",
+        "--fallback-style=llvm"
+    ],
+    "clangd.semanticHighlighting": true,
+    "clangd.fallbackFlags": [
+        "-std=c++20",
+        "-Wall",
+        "-Wextra"
+    ],
+    "diagnostic.enable": true,
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.virtualTextPrefix": " ❯ ",
+    "diagnostic.signOffset": 9999999,
+    "diagnostic.displayByAle": false,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.level": "hint",
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.errorSign": "✗",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "ℹ",
+    "diagnostic.hintSign": "➤",
+    "suggest.autoTrigger": "always",
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.minTriggerInputLength": 1,
+    "suggest.acceptSuggestionOnCommitCharacter": true,
+    "suggest.snippetIndicator": "✨",
+    "suggest.echodocSupport": true,
+    "suggest.maxCompleteItemCount": 50,
+    "suggest.floatEnable": true,
+    "suggest.removeDuplicateItems": true,
+    "coc.preferences.useQuickfixForLocations": true,
+    "coc.preferences.jumpCommand": "edit",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "c",
+        "cpp"
+    ],
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.hoverTarget": "float",
+    "coc.preferences.maxTooltipWidth": 80,
+    "coc.preferences.enableFloatHighlight": true,
+    "signature.enable": true,
+    "signature.target": "float",
+    "signature.maxWidth": 80
 }

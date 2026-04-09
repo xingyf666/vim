@@ -734,7 +734,7 @@ nmap T <Plug>(easymotion-overwin-w)
 let g:EasyMotion_do_mapping = 0
 
 " for coc.nvim:
-"let g:coc_global_extensions = ['coc-ccls', 'coc-pyright', 'coc-json', 'coc-git']
+let g:coc_global_extensions = ['coc-clangd', 'coc-json', 'coc-git']
 
 " BEGIN_COC_NVIM {{{
 " References: https://github.com/neoclide/coc.nvim#example-vim-configuration
